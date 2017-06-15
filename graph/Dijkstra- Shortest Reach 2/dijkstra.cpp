@@ -16,16 +16,20 @@ struct comp
 };
  
 void dijkstra(map<int, vector< pair< int, int > > >& adj, int s, int n){
+    //min heap storing node and weight
     priority_queue< pair< int, long int >, vector< pair< int, long int > >, comp  >pq;
-    vector< long int > dist(n, MAX);
+    vector< long int > dist(n, MAX);    //distance from source
+    vector< long int > proc(n, 0);      //check for processed nodes
+    
     dist[s] = 0;
-    vector< long int > proc(n, 0);
     pq.push(make_pair(s, 0));
+    
     while(!pq.empty()){
         int node = pq.top().first;
         int weight = pq.top().second;
         if(proc[node] == 0){
             vector< pair< int, int > >::iterator it;
+            //check for adjacent nodes and update weight
             for(it = adj[node].begin(); it != adj[node].end(); it++){
                 if(dist[node] + (*it).second < dist[(*it).first]){
                     dist[(*it).first] = dist[node] + (*it).second;
@@ -36,6 +40,7 @@ void dijkstra(map<int, vector< pair< int, int > > >& adj, int s, int n){
         }
         pq.pop();
     }
+    //print result
     for(int i = 0; i < n; i++){
         if(dist[i] == MAX){
             dist[i] = -1;
@@ -62,6 +67,7 @@ int main() {
         for(int i = 0; i < m; i++){
             int temp1, temp2, temp3;;
             cin >> temp1 >> temp2 >> temp3;
+            //adjacency list
             adj[temp1-1].push_back(make_pair(temp2-1, temp3));
             adj[temp2-1].push_back(make_pair(temp1-1, temp3));
         }
