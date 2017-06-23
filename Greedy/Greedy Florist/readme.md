@@ -1,3 +1,6 @@
+https://www.hackerrank.com/challenges/greedy-florist
+
+
 A group of k friends want to buy n flowers where each flower i has some base cost, c_i . The florist wants to maximize his number of new customers, so he increases the price of flowers purchased by repeat customers; more precisely, if a customer has already purchased x flowers, the price, p_i, for flower is p_i = (x+1)*c_i.
 
 Given n, k, and the base cost for each flower, find and print the minimum cost for the group to purchase n flowers.
