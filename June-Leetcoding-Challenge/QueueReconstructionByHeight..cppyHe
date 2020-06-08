@@ -1,0 +1,18 @@
+/* https://leetcode.com/explore/challenge/card/june-leetcoding-challenge/539/week-1-june-1st-june-7th/3352/ */
+
+class Solution {
+public:
+    vector<vector<int>> reconstructQueue(vector<vector<int>>& people) {
+        sort(people.begin(), people.end(), [](vector<int>a, vector<int>b){return (a[0] > b[0]) || (a[0] == b[0] && a[1] < b[1]);});
+        vector<vector<int>>ans(people.size(), vector<int>(2, 0));
+        for(int i = 0; i < people.size(); i++){
+            vector<int>p = people[i];
+            if(p[1] != i){
+                people.erase(people.begin()+i);
+                people.insert(people.begin()+p[1], p);
+            }
+        }
+        return people;
+        
+    }
+};
